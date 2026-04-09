@@ -168,7 +168,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
-import tw.nekomimi.nekogram.Extra;
 import tw.nekomimi.nekogram.helpers.PasscodeHelper;
 import me.vkryl.core.BitwiseUtils;
 
@@ -1740,10 +1739,6 @@ public class AlertsCreator {
     }
 
     public static void createBotLaunchAlert(BaseFragment fragment, TLRPC.User user, Runnable onConfirm, Runnable onDismiss) {
-        if (Extra.isTrustedBot(user.id)) {
-            onConfirm.run();
-            return;
-        }
         Context context = fragment.getContext();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -1854,13 +1849,6 @@ public class AlertsCreator {
 
     public static void createBotLaunchAlert(BaseFragment fragment, AtomicBoolean allowWrite, TLRPC.User user, Runnable loadBotSheet) {
         if (fragment == null) {
-            return;
-        }
-        if (Extra.isTrustedBot(user.id)) {
-            if (allowWrite != null) {
-                allowWrite.set(true);
-            }
-            loadBotSheet.run();
             return;
         }
         Context context = fragment.getContext();
