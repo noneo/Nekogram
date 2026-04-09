@@ -23,7 +23,7 @@ dependencies {
     implementation 'androidx.interpolator:interpolator:1.0.0'
     implementation 'androidx.biometric:biometric:1.1.0'
 
-    implementation 'com.google.android.gms:play-services-cast-framework:22.3.0'
+    implementation 'com.google.android.gms:play-services-cast-framework:22.2.0'
     implementation 'androidx.mediarouter:mediarouter:1.8.1'
     implementation 'org.nanohttpd:nanohttpd:2.3.1'
 
@@ -48,7 +48,6 @@ dependencies {
         exclude group: 'org.checkerframework', module: 'checker-compat-qual'
         exclude group: 'org.checkerframework', module: 'checker-qual'
         exclude group: 'com.google.errorprone', module: 'error_prone_annotations'
-        exclude group: 'com.google.j2objc', module: 'j2objc-annotations'
         exclude group: 'org.codehaus.mojo', module: 'animal-sniffer-annotations'
     }
 

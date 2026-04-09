@@ -152,6 +152,7 @@
 -keepattributes SourceFile,LineNumberTable
 -renamesourcefileattribute SourceFile
 -dontoptimize
+-dontobfuscate
 
 -dontwarn android.support.annotation.*
 -dontwarn androidx.compose.**
