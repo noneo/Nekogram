@@ -78,7 +78,7 @@ public class WhisperHelper {
         builder.setMessage(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CloudflareCredentialsDialog),
                 -1,
                 AndroidUtilities.REPLACING_TAG_TYPE_LINKBOLD,
-                () -> Browser.openUrl(context, "https://nekogram.app/cloudflare-credentials"),
+                () -> Browser.openUrl(context, "https://developers.cloudflare.com/workers-ai/get-started/rest-api"),
                 resourcesProvider));
         builder.setCustomViewOffset(0);
 
