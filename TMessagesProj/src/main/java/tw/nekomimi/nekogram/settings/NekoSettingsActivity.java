@@ -40,6 +40,7 @@ import java.util.Locale;
 
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
+import tw.nekomimi.nekogram.Extra;
 import tw.nekomimi.nekogram.accessibility.AccessibilitySettingsActivity;
 import tw.nekomimi.nekogram.helpers.CloudSettingsHelper;
 import tw.nekomimi.nekogram.helpers.PasscodeHelper;
@@ -127,9 +128,11 @@ public class NekoSettingsActivity extends BaseNekoSettingsActivity implements Fa
                 search(editText.getText().toString());
             }
         });
-        syncItem = menu.addItem(1, R.drawable.cloud_sync);
-        syncItem.setContentDescription(LocaleController.getString(R.string.CloudConfig));
-        syncItem.setOnClickListener(v -> CloudSettingsHelper.getInstance().showDialog(this));
+        if (Extra.getHelperBot() != null) {
+            syncItem = menu.addItem(1, R.drawable.cloud_sync);
+            syncItem.setContentDescription(LocaleController.getString(R.string.CloudConfig));
+            syncItem.setOnClickListener(v -> CloudSettingsHelper.getInstance().showDialog(this));
+        }
 
         return fragmentView;
     }
@@ -216,7 +219,7 @@ public class NekoSettingsActivity extends BaseNekoSettingsActivity implements Fa
 
     @Override
     public void onFactorChanged(int id, float factor, float fraction, FactorAnimator callee) {
-        if (id == ANIMATOR_ID_SEARCH_PAGE_VISIBLE) {
+        if (id == ANIMATOR_ID_SEARCH_PAGE_VISIBLE && syncItem != null) {
             FragmentFloatingButton.setAnimatedVisibility(syncItem, 1f - factor);
         }
     }

@@ -67,7 +67,7 @@ public class NekoExperimentalSettingsActivity extends BaseNekoSettingsActivity {
         items.add(UItem.asCheck(showRPCErrorRow, LocaleController.getString(R.string.ShowRPCError), LocaleController.formatString(R.string.ShowRPCErrorException, "FILE_REFERENCE_EXPIRED")).slug("showRPCError").setChecked(NekoConfig.showRPCError));
         items.add(UItem.asShadow(null));
 
-        if (getParentActivity() instanceof LaunchActivity) {
+        if (getParentActivity() instanceof LaunchActivity && Extra.getHelperBot() != null) {
             items.add(TextDetailSettingsCellFactory.of(checkUpdateRow, LocaleController.getString(R.string.CheckUpdate), UpdateHelper.formatDateUpdate(SharedConfig.lastUpdateCheckTime)).slug("checkUpdate"));
             items.add(UItem.asShadow(null));
         }
