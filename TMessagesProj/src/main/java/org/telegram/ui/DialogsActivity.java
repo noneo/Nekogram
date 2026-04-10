@@ -273,7 +273,6 @@ import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import tw.nekomimi.nekogram.helpers.PopupHelper;
 import tw.nekomimi.nekogram.helpers.TypefaceHelper;
-import tw.nekomimi.nekogram.helpers.remote.ConfigHelper;
 
 public class DialogsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, FloatingDebugProvider, FactorAnimator.Target, MainTabsActivity.TabFragmentDelegate {
     private final int ADDITIONAL_LIST_HEIGHT_DP = Build.VERSION.SDK_INT >= 31 ? 48 : 0;
@@ -5941,7 +5940,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } catch (Exception e) {}
             dialogsHintCell.clear();
         }
-        var nekoSuggestion = ConfigHelper.getNewsSuggestion();
         if (isInPreviewMode()) {
             dialogsHintCellVisible = false;
         } else if (getMessagesController().isFrozen()) {
@@ -5955,28 +5953,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 false,
                 true
             );
-        } else if (folderId == 0 && nekoSuggestion != null) {
-            final TLRPC.TL_pendingSuggestion suggestion = nekoSuggestion;
-            dialogsHintCellVisible = true;
-
-            CharSequence title = new SpannableStringBuilder(suggestion.title.text);
-            MessageObject.addEntitiesToText(title, suggestion.title.entities, false, false, true, true);
-            title = Emoji.replaceEmoji(title, dialogsHintCell.titleView.getPaint().getFontMetricsInt(), false, null);
-            title = MessageObject.replaceAnimatedEmoji(title, suggestion.title.entities, dialogsHintCell.titleView.getPaint().getFontMetricsInt());
-
-            CharSequence subtitle = new SpannableStringBuilder(suggestion.description.text);
-            MessageObject.addEntitiesToText(subtitle, suggestion.description.entities, false, false, true, true);
-            subtitle = Emoji.replaceEmoji(subtitle, dialogsHintCell.messageView.getPaint().getFontMetricsInt(), false, null);
-            subtitle = MessageObject.replaceAnimatedEmoji(subtitle, suggestion.description.entities, dialogsHintCell.messageView.getPaint().getFontMetricsInt());
-
-            dialogsHintCell.setText(title, subtitle);
-            dialogsHintCell.setOnClickListener(v -> {
-                Browser.openUrl(getContext(), suggestion.url);
-            });
-            dialogsHintCell.setOnCloseListener(v -> {
-                ConfigHelper.removeNews(suggestion.suggestion);
-                updateDialogsHint();
-            });
         } else if (folderId == 0 && getMessagesController().pendingSuggestions.contains("SETUP_PASSKEY")) {
             dialogsHintCellVisible = true;
             dialogsHintCell.setOnClickListener(v -> {
