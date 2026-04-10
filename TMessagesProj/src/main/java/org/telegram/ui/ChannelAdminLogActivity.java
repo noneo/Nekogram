@@ -156,7 +156,6 @@ import java.util.HashSet;
 
 import tw.nekomimi.nekogram.MessageDetailsActivity;
 import tw.nekomimi.nekogram.NekoConfig;
-import tw.nekomimi.nekogram.helpers.WebAppHelper;
 
 public class ChannelAdminLogActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
 
@@ -2367,10 +2366,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
     private boolean processSelectedOptionLongClick(int option) {
         switch (option) {
-            case OPTION_DETAILS: {
-                WebAppHelper.openTLViewer(this, selectedObject.currentEvent);
-                return true;
-            }
+            case OPTION_DETAILS:
+                return false;
         }
         return false;
     }

@@ -44,8 +44,6 @@ import org.telegram.ui.Stories.MessageMediaStoryFull_old;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import tw.nekomimi.nekogram.helpers.WebAppHelper;
-
 import me.vkryl.core.BitwiseUtils;
 
 public class TLRPC {
@@ -62651,7 +62649,6 @@ public class TLRPC {
         }
 
         protected void writeAttachPath(OutputSerializedData stream) {
-            if (stream instanceof WebAppHelper.CleanSerializedData) return;
             if (ApplicationLoader.isAndroidTestEnvironment()) {
                 return;
             }
