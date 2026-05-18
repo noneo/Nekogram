@@ -28,6 +28,10 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew assembleRelease
+        env:
+          API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
