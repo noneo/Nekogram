@@ -6,8 +6,8 @@ import tw.nekomimi.nekogram.helpers.UserHelper;
 
 public class Extra {
     // https://core.telegram.org/api/obtaining_api_id
-    public static final int APP_ID = 0;
-    public static final String APP_HASH = "";
+    public static final int APP_ID = BuildConfig.API_ID;
+    public static final String APP_HASH = BuildConfig.API_HASH;
 
     public static final String PLAYSTORE_APP_URL = "";
 
